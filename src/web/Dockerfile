@@ -4,6 +4,6 @@ WORKDIR /app
 
 COPY . .
 
-# RUN npm ci
+RUN npm ci
 
 CMD npm start
