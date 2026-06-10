@@ -1,25 +1,16 @@
 services:
   web:
-    container_name: web
     build: "./src/web/"
     ports:
       - "8000:8000"
     volumes:
       - "./src/web/:/app/"
-    networks:
-      - default
-
   crd:
-    container_name: crd
-    restart: "always"
     build: "./src/crd/"
     ports:
       - "9222:9222"
     volumes:
       - "./src/crd/:/app/"
-    networks:
-      - default
-
   mongo:
     image: "mongo"
     ports:
@@ -29,7 +20,6 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-
   mongo-express:
     image: "mongo-express"
     ports:
@@ -39,7 +29,3 @@ services:
       ME_CONFIG_BASICAUTH_ENABLED: true
       ME_CONFIG_BASICAUTH_USERNAME: mongoexpressuser
       ME_CONFIG_BASICAUTH_PASSWORD: mongoexpresspass
-
-networks:
-  default:
-    name: businesses-cnpj-cnae-network
